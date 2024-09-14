@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
     <div class="box">
         <span style="--i:1;"><img src="img1.png" alt="not rendered1"></span>
@@ -19,36 +21,47 @@
     </div>
     <script>
         let box = document.querySelector('.box');
-        let lastX = 0;      // Store the last X position (for both mouse and touch)
-        let currentRotation = 0;  // Store the current rotation so it doesn't reset
-    
+        let lastX = null;         // Set to null to track when a touch starts
+        let currentRotation = 0;  // Store the current rotation for continuous rotation
+
         // Function to handle both mouse and touch movements
         function rotateBox(deltaX) {
-          currentRotation += deltaX / 3;  // Adjust sensitivity
-          box.style.transform = "perspective(1000px) rotateY(" + currentRotation + "deg)";
+            currentRotation += deltaX / 3;  // Adjust sensitivity
+            box.style.transform = "perspective(1000px) rotateY(" + currentRotation + "deg)";
         }
-    
+        // Function to handle rotation
+        function rotateBox(currentRotation) {
+            box.style.transform = "perspective(1000px) rotateY(" + currentRotation + "deg)";
+        }
+
         // Mouse movement (desktop)
-        window.onmousemove = function(e) {
-          if (lastX === 0) lastX = e.clientX;  // Set initial position on first move
-          let deltaX = e.clientX - lastX;      // Calculate the difference in movement
-          rotateBox(deltaX);                   // Rotate based on movement
-          lastX = e.clientX;                   // Update last X position
+        window.onmousemove = function (e) {
+            let x = e.clientX/3;      
+            rotateBox(x);                                 
         };
-    
-        // Touch movement (mobile)
-        window.ontouchmove = function(e) {
-          let touch = e.touches[0];
-          if (lastX === 0) lastX = touch.clientX;  // Set initial position on first touch
-          let deltaX = touch.clientX - lastX;      // Calculate the difference in movement
-          rotateBox(deltaX);                       // Rotate based on movement
-          lastX = touch.clientX;                   // Update last X position
+
+        // Touch start event (set the starting position)
+        window.ontouchstart = function (e) {
+            let touch = e.touches[0];
+            lastX = touch.clientX;  // Set the initial touch position
         };
-    
-        // Reset lastX when the user stops moving (mouse or touch)
-        window.onmouseup = window.ontouchend = function() {
-          lastX = 0;
+
+        // Touch move event (rotate based on movement)
+        window.ontouchmove = function (e) {
+            if (lastX === null) return;  // If no initial position, do nothing
+            let touch = e.touches[0];
+            let deltaX = touch.clientX - lastX; 
+            currentRotation += deltaX / 2; // Calculate movement delta
+            rotateBox(currentRotation);  // Rotate based on movement
+            lastX = touch.clientX;  // Update last touch position
         };
-      </script>
+
+        // Touch end event (reset lastX after touch ends)
+        window.ontouchend = function () {
+            lastX = null;  // Reset the last position to null when the touch ends
+        };
+
+    </script>
 </body>
+
 </html>

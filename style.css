@@ -31,7 +31,7 @@ body
     transform:rotateY(calc(var(--i)*45deg)) translateZ(240px);
     -webkit-box-reflect:below 0px linear-gradient(transparent,transparent,#0002); 
 }
-@media screen and (max-width: 630px) {
+/* @media screen and (max-width: 630px) {
     .box {
         width:7.9rem;
         height:18.75rem;
@@ -40,7 +40,7 @@ body
     {
         transform:rotateY(calc(var(--i)*45deg)) translateZ(150px) ;
     }
-  }
+  } */
 .box span img
 {
     position:absolute;
