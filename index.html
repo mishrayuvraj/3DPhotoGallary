@@ -10,25 +10,20 @@
 
 <body>
     <div class="box">
-        <span style="--i:1;"><img src="img1.png" alt="not rendered1"></span>
-        <span style="--i:2;"><img src="img2.png" alt="not rendered2"></span>
-        <span style="--i:3;"><img src="img3.png" alt="not rendered3"></span>
-        <span style="--i:4;"><img src="img4.png" alt="not rendered4"></span>
-        <span style="--i:5;"><img src="img5.png" alt="not rendered5"></span>
-        <span style="--i:6;"><img src="img6.png" alt="not rendered6"></span>
-        <span style="--i:7;"><img src="img7.png" alt="not rendered7"></span>
-        <span style="--i:8;"><img src="img8.png" alt="not rendered8"></span>
+        <span style="--i:1;"><img src="./images/img1.png" alt="not rendered1"></span>
+        <span style="--i:2;"><img src="./images/img2.png" alt="not rendered2"></span>
+        <span style="--i:3;"><img src="./images/img3.png" alt="not rendered3"></span>
+        <span style="--i:4;"><img src="./images/img4.png" alt="not rendered4"></span>
+        <span style="--i:5;"><img src="./images/img5.png" alt="not rendered5"></span>
+        <span style="--i:6;"><img src="./images/img6.png" alt="not rendered6"></span>
+        <span style="--i:7;"><img src="./images/img7.png" alt="not rendered7"></span>
+        <span style="--i:8;"><img src="./images/img8.png" alt="not rendered8"></span>
     </div>
     <script>
         let box = document.querySelector('.box');
         let lastX = null;         // Set to null to track when a touch starts
         let currentRotation = 0;  // Store the current rotation for continuous rotation
 
-        // Function to handle both mouse and touch movements
-        function rotateBox(deltaX) {
-            currentRotation += deltaX / 3;  // Adjust sensitivity
-            box.style.transform = "perspective(1000px) rotateY(" + currentRotation + "deg)";
-        }
         // Function to handle rotation
         function rotateBox(currentRotation) {
             box.style.transform = "perspective(1000px) rotateY(" + currentRotation + "deg)";
@@ -51,7 +46,7 @@
             if (lastX === null) return;  // If no initial position, do nothing
             let touch = e.touches[0];
             let deltaX = touch.clientX - lastX; 
-            currentRotation += deltaX / 2; // Calculate movement delta
+            currentRotation += deltaX /2 ; // Calculate movement delta
             rotateBox(currentRotation);  // Rotate based on movement
             lastX = touch.clientX;  // Update last touch position
         };

@@ -25,8 +25,8 @@ body
     position:absolute;
     top:0;
     left:0;
-    width:100%;
-    height:100%;
+    width:80%;
+    height:80%;
     background:#fff;
     transform:rotateY(calc(var(--i)*45deg)) translateZ(240px);
     -webkit-box-reflect:below 0px linear-gradient(transparent,transparent,#0002); 
