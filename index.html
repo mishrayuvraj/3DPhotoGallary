@@ -19,10 +19,17 @@
     </div>
     <script>
         let box=document.querySelector('.box');
-        window.onmousemove=function(e){
-            let x=e.clientX/3;
-            box.style.transform="perspective(1000px) rotateY("+x+"deg)";
+        function handleRotation(xPosition){
+            let x=xPosition/3; //Adjust Senstivity
+            box.style.transform="perspective(1000px) rotateY("+x+"deg)";      
         }
+        window.onmousemove=function(e){
+            handleRotation(e.clientX);  // Pass the mouse X position
+        }
+        window.ontouchmove = function(e) {
+          let touch = e.touches[0];  // Get the first touch point
+        handleRotation(touch.clientX);  // Pass the touch X position
+    };
     </script>
 </body>
 </html>
