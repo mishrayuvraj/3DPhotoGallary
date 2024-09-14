@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="box">
+        <span style="--i:1;"><img src="img1.png" alt="not rendered1"></span>
+        <span style="--i:2;"><img src="img2.png" alt="not rendered2"></span>
+        <span style="--i:3;"><img src="img3.png" alt="not rendered3"></span>
+        <span style="--i:4;"><img src="img4.png" alt="not rendered4"></span>
+        <span style="--i:5;"><img src="img5.png" alt="not rendered5"></span>
+        <span style="--i:6;"><img src="img6.png" alt="not rendered6"></span>
+        <span style="--i:7;"><img src="img7.png" alt="not rendered7"></span>
+        <span style="--i:8;"><img src="img8.png" alt="not rendered8"></span>
+    </div>
+    <script>
+        let box=document.querySelector('.box');
+        window.onmousemove=function(e){
+            let x=e.clientX/3;
+            box.style.transform="perspective(1000px) rotateY("+x+"deg)";
+        }
+    </script>
+</body>
+</html>
